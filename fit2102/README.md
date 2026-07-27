@@ -25,4 +25,4 @@ Interactive exercises supporting the weekly exercises and assignments. They assu
 
 ## Layout
 
-- `wkXX/` — one folder per week: `OVERVIEW.md` (learning objectives), `tute/` (applied exercise project).
+- `wkXX/`: one folder per week with `OVERVIEW.md` (learning objectives) and `tute/` (applied exercise project).

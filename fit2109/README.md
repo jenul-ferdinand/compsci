@@ -4,21 +4,21 @@ Practical software toolkit: command-line shell, text processing, version control
 
 ## Weekly rhythm
 
-1. **Pre-class reading** — before the workshop; workshops assume it's done.
-2. **Workshop** (2h, in groups) — work through the week's topic.
-3. **Applied class** (2h, hands-on) — **one-week offset**: practises the *previous* week's workshop material. Week 1 is the exception (environment setup — don't skip).
-4. **After-class revision** (~2h) — finish exercises, re-type commands yourself.
+1. **Pre-class reading**: do it before the workshop; workshops assume it's done.
+2. **Workshop** (2h, in groups): work through the week's topic.
+3. **Applied class** (2h, hands-on): runs on a **one-week offset**, practising the *previous* week's workshop material. Week 1 is the exception (environment setup, don't skip).
+4. **After-class revision** (~2h): finish exercises, re-type commands yourself.
 
 Unit is designed for 144 hours total study.
 
 ## Habits
 
-- Don't memorise commands — the unit assesses finding and adapting the right tool.
+- Don't memorise commands. The unit assesses finding and adapting the right tool.
 - Read the error message before searching online.
 - Experiment freely, but never run a recursive delete without being certain what it removes.
 - Questions go to Ed (public preferred); Help Desk opens once assignments are released.
 
 ## Layout
 
-- `wkXX/applied/` — applied class handout and working folder.
-- `wkXX/workshop/` — workshop handouts.
+- `wkXX/applied/`: applied class handout and working folder.
+- `wkXX/workshop/`: workshop handouts.

@@ -42,4 +42,4 @@ Register a Google Cloud 90-day free trial with a **personal** account before the
 
 ## Layout
 
-- `wkXX/` — one folder per week: `OVERVIEW.md` (week summary and objectives), `seminarXX.pdf` and `outlineXX.pdf` (slides, not committed).
+- `wkXX/`: one folder per week with `OVERVIEW.md` (week summary and objectives) plus `seminarXX.pdf` and `outlineXX.pdf` (slides, not committed).
