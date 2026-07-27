@@ -20,4 +20,5 @@ Unit is designed for 144 hours total study.
 
 ## Layout
 
-- `wkXX/` — one folder per week: `appliedXX.pdf` (handout), `appliedXX/` (working folder for the applied class), `workshopXX.pdf` (slides, not committed).
+- `wkXX/applied/` — applied class handout and working folder.
+- `wkXX/workshop/` — workshop handouts.
