@@ -1,0 +1,3 @@
+Temporary debug note from a previous run.
+
+This file should be renamed during the lab so it is clearly marked as archived.

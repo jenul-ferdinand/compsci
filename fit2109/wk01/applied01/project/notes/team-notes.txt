@@ -1,0 +1,5 @@
+Week 1 project notes
+
+- Keep the original notes file in this folder.
+- Copy these notes into project/archive when the handout asks you to.
+- Check your work with ls before running the checker again.
