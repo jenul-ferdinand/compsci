@@ -2,6 +2,8 @@
 
 Programming paradigms. The languages (JavaScript and TypeScript in the first half) are tools for exploring paradigms, and the unit assesses the paradigms rather than language features. MDN and the TypeScript docs cover the language side.
 
+Course notes: <https://tgdwyer.github.io/> (source: [tgdwyer/tgdwyer.github.io](https://github.com/tgdwyer/tgdwyer.github.io)).
+
 ## Assessment
 
 - 2 assignments, 30% each. A1 releases Week 3 and is due end of Week 6. A2 releases Week 9 and is due end of Week 12.
