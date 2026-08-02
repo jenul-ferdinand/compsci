@@ -1,11 +1,21 @@
 node_modules/
 TODO.md
+__MACOSX/
+._*
+a.out
+*.o
 
 fit3143/**/lec*.pdf
 fit3143/**/lec*.ppsx
 fit3143/**/applied*.pdf
+fit3143/**/applied*.pptx
+fit3143/**/exercises*.pdf
 fit3143/**/workshop*.pptx
+fit3143/**/supp*.ppsx
+fit3143/synopsis.pptx
 
 fit3184/**/seminar*.pdf
 fit3184/**/outline*.pdf
 fit3184/**/applied*.pdf
+fit3184/**/overview*.pdf
+fit3184/**/optional*.pdf
