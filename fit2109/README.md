@@ -5,9 +5,10 @@ Practical software toolkit: command-line shell, text processing, version control
 ## Weekly rhythm
 
 1. **Pre-class reading**: do it before the workshop; workshops assume it's done.
-2. **Workshop** (2h, in groups): work through the week's topic.
-3. **Applied class** (2h, hands-on): runs on a **one-week offset**, practising the *previous* week's workshop material. Week 1 is the exception (environment setup, don't skip).
-4. **After-class revision** (~2h): finish exercises, re-type commands yourself.
+2. **Short checks/quizzes**: after the pre-lesson materials, before the workshop and applied class.
+3. **Workshop** (2h, in groups): concepts and problem-solving strategies for the week's topic.
+4. **Applied class** (2h, hands-on): using tools, writing scripts, debugging, scaffolded lab tasks. Runs on a **one-week offset**, practising the *previous* week's workshop material. Week 1 is the exception (environment setup, don't skip).
+5. **After-class revision** (~2h): finish exercises, re-type commands yourself.
 
 Unit is designed for 144 hours total study.
 

@@ -1,0 +1,5 @@
+Week 2 rescue notes
+
+Keep this file. It should be copied into the archive before repair work continues.
+
+The original notes file must remain in rescue/notes/.

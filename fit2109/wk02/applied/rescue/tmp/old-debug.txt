@@ -1,0 +1,3 @@
+Temporary debug note
+
+This file is no longer active evidence. Rename it to old-debug.archived during the rescue repair.

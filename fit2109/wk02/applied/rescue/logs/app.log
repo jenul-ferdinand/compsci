@@ -1,0 +1,6 @@
+INFO Startup complete
+WARN Disk space low
+ERROR Database unavailable
+INFO Retry scheduled
+ERROR Timeout contacting API
+ERROR Database unavailable
