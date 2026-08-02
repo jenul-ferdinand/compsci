@@ -12,7 +12,7 @@ Assumed background: computer networks (TCP/IP), Linux shell and command line, an
 | Assignment 1: individual project, containerised web service | 30% | Week 8 |
 | Assignment 2: group project, application on AWS or multi-cloud | 40% | Week 14 |
 
-- Quizzes run through the eAssessment team. Missing one loses its 15%.
+- Quizzes run through the eAssessment team, likely outside class time. Missing one loses its 15%. Quiz 1 covers weeks 1-5, quiz 2 covers weeks 6-11. Primarily seminar content; format similar to entry/associate level cloud certifications. No practice quizzes.
 - GenAI: unrestricted in assignments, banned in quizzes. Competency hurdles apply: an interview/demo checks human understanding, and submitting AI-generated work you can't explain can fail the assignment.
 
 ## Weekly rhythm
@@ -24,6 +24,13 @@ Assumed background: computer networks (TCP/IP), Linux shell and command line, an
 ## Setup
 
 Register a Google Cloud 90-day free trial with a **personal** account before the first applied class. Card verification places a small temporary hold. Already used the free trial in another unit? Register with a different email and card. GCP account issues go to Google Support, not the teaching team.
+
+If GCP registration fails, two sanctioned alternatives (skills transfer across providers):
+
+- **Azure for Students**: USD $100 credit for 12 months, sign up with the Monash student email, no card needed.
+- **Oracle Cloud Free Tier**: USD $300 credit for 12 months, no card, via a course invitation email. Invitations are time-sensitive; accept promptly.
+
+Admin contact: fit3184.admin@monash.edu, or the Ed forum.
 
 ## Syllabus
 
