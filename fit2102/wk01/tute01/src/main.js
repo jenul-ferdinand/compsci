@@ -85,7 +85,7 @@ const arrowFunction = () => {
 
 const binary = (n, acc) => {
     return binary(floor(n / 2), (n % 2) + acc);
-};
+};  
 
 /**
  * Recursive function that builds a binary string using an accumulator.
