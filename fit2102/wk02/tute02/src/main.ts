@@ -51,7 +51,7 @@ type IMPLEMENT_THIS = any;
  */
 
 const anObject = {
-    x: 5
+    x: 5,
 } as const;
 
 const anotherObject = {
@@ -113,7 +113,6 @@ animate(rectangle, 0, 370, duration);
 const blueRectangle = document.getElementById("blueRectangle");
 animate(blueRectangle, 370, 0, 10_000);
 
-
 /*****************************************************************
  * Exercise 3
  *
@@ -133,9 +132,9 @@ animate(blueRectangle, 370, 0, 10_000);
  */
 
 type BinaryTree<T> = Readonly<{
-    data: IMPLEMENT_THIS;
-    left?: IMPLEMENT_THIS;
-    right?: IMPLEMENT_THIS;
+    data: T;
+    left?: BinaryTree<T>;
+    right?: BinaryTree<T>;
 }>;
 
 /**
@@ -153,12 +152,16 @@ type BinaryTree<T> = Readonly<{
  * @param right Right child
  * @returns Binary tree node
  */
-const binaryTree = (
-    data: IMPLEMENT_THIS,
-    left?: IMPLEMENT_THIS,
-    right?: IMPLEMENT_THIS,
-): BinaryTree<IMPLEMENT_THIS> => {
-    return IMPLEMENT_THIS;
+const binaryTree = <T>(
+    data: T,
+    left?: BinaryTree<T>,
+    right?: BinaryTree<T>,
+): BinaryTree<T> => {
+    return {
+        data,
+        left,
+        right,
+    };
 };
 
 const binaryTreeExample = binaryTree(
@@ -181,8 +184,13 @@ const anotherBinaryTreeExample = binaryTree(
  * @returns A number representing the longest path from root to leaf (including root), i.e. the number of nodes along the longest path from the root node down to the farthest leaf node.
  *
  */
-const depthBinaryTree = <T>(tree: IMPLEMENT_THIS): IMPLEMENT_THIS => {
-    return IMPLEMENT_THIS;
+const depthBinaryTree = <T>(tree: BinaryTree<T>): number => {
+    return (
+        Math.max(
+            tree.left ? depthBinaryTree(tree.left) : 0,
+            tree.right ? depthBinaryTree(tree.right) : 0,
+        ) + 1 // Incrementation on each recursion, this bubbles up
+    );
 };
 
 /**
@@ -194,9 +202,14 @@ const depthBinaryTree = <T>(tree: IMPLEMENT_THIS): IMPLEMENT_THIS => {
  *
  */
 const mapBinaryTree = <T, U>(
-    tree: IMPLEMENT_THIS,
-    fn: IMPLEMENT_THIS,
-): IMPLEMENT_THIS => IMPLEMENT_THIS;
+    tree: BinaryTree<T>,
+    fn: (val: T) => U,
+): BinaryTree<U> =>
+    binaryTree(
+        fn(tree.data),
+        tree.left ? mapBinaryTree(tree.left, fn) : undefined,
+        tree.right ? mapBinaryTree(tree.right, fn) : undefined,
+    );
 
 /*****************************************************************
  * Exercise 4 — N-ary Trees with Generics
@@ -213,8 +226,8 @@ const mapBinaryTree = <T, U>(
  *****************************************************************/
 
 type NaryTree<T> = Readonly<{
-    data: IMPLEMENT_THIS;
-    children: IMPLEMENT_THIS;
+    data: T;
+    children: NaryTree<T>[];
 }>;
 
 /**
@@ -225,8 +238,11 @@ type NaryTree<T> = Readonly<{
  * @returns A new immutable NaryTree<T> node
  *
  */
-const naryTree = <T>(data: IMPLEMENT_THIS, children: IMPLEMENT_THIS = []): IMPLEMENT_THIS => {
-    return IMPLEMENT_THIS;
+const naryTree = <T>(data: T, children: NaryTree<T>[] = []): NaryTree<T> => {
+    return {
+        data,
+        children,
+    };
 };
 
 const naryTreeExample = naryTree(1, [
@@ -244,8 +260,10 @@ const naryTreeExample = naryTree(1, [
  * @returns The maximum depth of the tree
  *
  */
-const depthNaryTree = <T>(tree: IMPLEMENT_THIS): IMPLEMENT_THIS => {
-    return IMPLEMENT_THIS;
+const depthNaryTree = <T>(tree: NaryTree<T>): number => {
+    if (!tree.children || tree.children.length === 0) return 1;
+    const depths = tree.children.map(depthNaryTree, tree.children);
+    return Math.max(...depths) + 1;
 };
 
 /**
@@ -256,10 +274,13 @@ const depthNaryTree = <T>(tree: IMPLEMENT_THIS): IMPLEMENT_THIS => {
  * @returns A new NaryTree with transformed data
  *
  */
-const mapNaryTree = <T, U>(
-    tree: IMPLEMENT_THIS,
-    fn: IMPLEMENT_THIS,
-): IMPLEMENT_THIS => IMPLEMENT_THIS;
+const mapNaryTree = <T, U>(tree: NaryTree<T>, fn: (val: T) => U): NaryTree<U> =>
+    naryTree(
+        fn(tree.data),
+        // Every child must get mapped with fn so we recursively 
+        // mapNaryTree on them
+        tree.children.map(child => mapNaryTree(child, fn)),
+    );
 
 /*****************************************************************
  * Exercise 5 — Maybe Types
@@ -305,7 +326,7 @@ function addOne(maybeNum: Maybe<number>): Maybe<number> {
  * @returns A `Just<U>` with the transformed value, or `Nothing` if the input was `Nothing`
  */
 function mapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => U): Maybe<U> {
-    return IMPLEMENT_THIS;
+    return m ? just(fn(m.Just)) : nothing; 
 }
 
 /**
@@ -317,7 +338,7 @@ function mapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => U): Maybe<U> {
  * @returns A flattened `Maybe<U>`, or `Nothing` if the input was `Nothing`
  */
 function flatMapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => Maybe<U>): Maybe<U> {
-    return IMPLEMENT_THIS;
+    return m ? fn(m.Just) : nothing; // fn already returns a Maybe
 }
 
 /**
