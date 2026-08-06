@@ -277,7 +277,7 @@ const depthNaryTree = <T>(tree: NaryTree<T>): number => {
 const mapNaryTree = <T, U>(tree: NaryTree<T>, fn: (val: T) => U): NaryTree<U> =>
     naryTree(
         fn(tree.data),
-        // Every child must get mapped with fn so we recursively 
+        // Every child must get mapped with fn so we recursively
         // mapNaryTree on them
         tree.children.map(child => mapNaryTree(child, fn)),
     );
@@ -326,7 +326,7 @@ function addOne(maybeNum: Maybe<number>): Maybe<number> {
  * @returns A `Just<U>` with the transformed value, or `Nothing` if the input was `Nothing`
  */
 function mapMaybe<T, U>(m: Maybe<T>, fn: (value: T) => U): Maybe<U> {
-    return m ? just(fn(m.Just)) : nothing; 
+    return m ? just(fn(m.Just)) : nothing;
 }
 
 /**
@@ -383,7 +383,12 @@ function reciprocal(n: number): number {
  * @param input - The input string to transform
  * @returns `Just<number>` if all operations succeed, otherwise `Nothing`
  */
-const chainFunctions = (input: string): Maybe<number> => IMPLEMENT_THIS;
+const chainFunctions = (input: string): Maybe<number> => {
+    const maybeNum = parseNumber(input);
+    const maybeNonZeroNum = flatMapMaybe(maybeNum, nonZero); // flatMap because nonZero could be a number or nothing
+    const reciprocalNum = mapMaybe(maybeNonZeroNum, reciprocal); // map because reciprocal definitely returns a number
+    return reciprocalNum;
+};
 
 export {
     anObject,
