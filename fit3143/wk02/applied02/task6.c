@@ -4,6 +4,8 @@
 int my_strlen(char *s);
 void my_strcat(char *dest, char *src);
 void reverse(char *s);
+int count_char(char *s, char c);
+int count_char_pointerstyle(char *s, char c);
 
 int main()
 {
@@ -68,25 +70,35 @@ int main()
 
 	// Part 3: testing
 
-    // my_strlen
+	// my_strlen
 	if (strlen("test string") == my_strlen("test string"))
 		printf("my_strlen pass\n");
 
-    // my_strcat
-    char line_2[100];
-    strcpy(line_2, "Hello this is another string");
-    printf("Line: %s\n", line_2);
-    my_strcat(line_2, " what is this");
-    printf("Line: %s\n", line_2);
+	// my_strcat
+	char line_2[100];
+	strcpy(line_2, "Hello this is another string");
+	printf("Line: %s\n", line_2);
+	my_strcat(line_2, " what is this");
+	printf("Line: %s\n", line_2);
 
-    // reverse
-    char example[] = "hello";
-    reverse(example);
-    printf("Reversed \"hello\": %s\n", example);
+	// reverse
+	char example[] = "hello";
+	reverse(example);
+	printf("Reversed \"hello\": %s\n", example);
 
-    char example2[] = "hell";
-    reverse(example2);
-    printf("Reversed \"hell\": %s\n", example2);
+	char example2[] = "hell";
+	reverse(example2);
+	printf("Reversed \"hell\": %s\n", example2);
+
+	// count_char
+	char example3[] = "testting";
+	int count = count_char(example3, 't');
+	printf("Count of \"t\"s in \"%s\": %d\n", example3, count);
+	// count_char_pointerstyle
+	int count2 = count_char_pointerstyle(example3, 't');
+	printf("Pointer-style count of \"t\"s in \"%s\": %d\n", example3, count2);
+
+    // Part 5, why C let's you 
 
 	return 0;
 }
@@ -101,43 +113,60 @@ int my_strlen(char *s)
 	return i;
 }
 
-void my_strcat(char *dest, char *src) {
-    // find the end of dest
-    int i = 0;
-    while (dest[i] != '\0') i++;
+void my_strcat(char *dest, char *src)
+{
+	// find the end of dest
+	int i = 0;
+	while (dest[i] != '\0')
+		i++;
 
-    // then do the copy loop to concat
-    int k = 0;
-    while (src[k] != '\0') {
-        dest[i] = src[k];
-        ++i;
-        ++k;
-    }
-    dest[i] = '\0';
+	// then do the copy loop to concat
+	int k = 0;
+	while (src[k] != '\0') {
+		dest[i] = src[k];
+		++i;
+		++k;
+	}
+	dest[i] = '\0';
 
-    return;
+	return;
 }
 
-void reverse(char *s) {
-    int len = my_strlen(s);
-    int k = len-1;
-    int i = 0;
-    while (i < k) {
-        char temp = s[i];
-        s[i] = s[k];
-        s[k] = temp;
-        i++;
-        k--;
-    }
-    return;
+void reverse(char *s)
+{
+	int len = my_strlen(s);
+	int k = len - 1;
+	int i = 0;
+	while (i < k) {
+		char temp = s[i];
+		s[i] = s[k];
+		s[k] = temp;
+		i++;
+		k--;
+	}
+	return;
 }
 
-/*
-hello
-^   ^
-oellh
- ^ ^
-olleh
-  ^
-  ^
-*/
+int count_char(char *s, char c)
+{
+	int count = 0;
+	int i = 0;
+	while (s[i] != '\0') {
+		if (s[i] == c)
+			count++;
+		i++;
+	}
+	return count;
+}
+
+int count_char_pointerstyle(char *s, char c)
+{
+	int count = 0;
+	while (*s != '\0') {
+		if (*s == c)
+			count++;
+		s++;
+	}
+	return count;
+}
+
