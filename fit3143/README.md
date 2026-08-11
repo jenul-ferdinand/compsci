@@ -9,7 +9,7 @@ Chief examiner and lecturer: Dr Terrence Mak. Reference text: Sima, Fountain and
 Pass mark is 50 overall, no threshold hurdles. All assessments are in-class; the regular 2-day extension policy does not apply (sick means special consideration through Central).
 
 - **Applied problem solving tasks** (3 x Moodle quiz, ~1h, in workshops weeks 4, 8, 12): 50%
-- **Laboratories** (3 x coding exercises, in labs weeks 4, 8, 12): 30%. In-person presentation plus code/report submission.
+- **Laboratories** (3 x coding exercises, in labs weeks 4, 8, 12): 30%. Group work: code/report submission plus an in-person team presentation. Labs run every week; odd weeks are unassessed working sessions to prepare.
 - **Applied sessions** (2 x written exercises, weeks 6 and 10): 20%. In-person presentation plus code/report/homework submission.
 
 Attendance matters: every assessment happens in class.
