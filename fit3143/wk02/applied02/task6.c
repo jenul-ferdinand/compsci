@@ -98,7 +98,15 @@ int main()
 	int count2 = count_char_pointerstyle(example3, 't');
 	printf("Pointer-style count of \"t\"s in \"%s\": %d\n", example3, count2);
 
-    // Part 5, why C let's you 
+    // Part 5
+
+    char buf[5];
+    strcpy(buf, "Lorem ipsum");
+
+    /**
+     * This works because strcpy doesn't care about the size, it gets the bare
+     * address buf.
+     */
 
 	return 0;
 }
