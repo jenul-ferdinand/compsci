@@ -1,6 +1,6 @@
 #include <stdio.h>
 
-int main() {
+void char_counter() {
     int nc = 0;
     int i = getchar();
     while (i != EOF) {
@@ -9,6 +9,20 @@ int main() {
     }
 
     printf("Number of chars in file: %d", nc);
+}
+
+void line_counter() {
+    int c, nl = 0;
+    while ((c = getchar()) != EOF) {
+        if (c == '\n') nl++;
+    }
+
+    printf("Number of lines in file: %d", nl);
+}
+
+int main() {
+    // char_counter();
+    line_counter();
 
     return 0;
 }
