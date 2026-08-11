@@ -1,3 +1,8 @@
 {
-    "recommendations": ["esbenp.prettier-vscode"]
+    "recommendations": [
+        "esbenp.prettier-vscode",
+        "ms-vscode.cpptools",
+        "ms-python.python",
+        "ms-vscode-remote.remote-wsl"
+    ]
 }
