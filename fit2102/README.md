@@ -7,7 +7,7 @@ Course notes: <https://tgdwyer.github.io/> (source: [tgdwyer/tgdwyer.github.io](
 ## Assessment
 
 - 2 assignments, 30% each. A1 releases Week 3 and is due end of Week 6. A2 releases Week 9 and is due end of Week 12.
-- 4 quizzes, 5% each.
+- 4 quizzes, 5% each. Scheduled for weeks 3, 5, 9, and 12, paper based, at the start of the workshop in those weeks. Not a hurdle.
 - Applied classes, 20% total: 11 classes, best 10 count at 2% each, so one week can be missed for free.
 
 ## Applied classes
