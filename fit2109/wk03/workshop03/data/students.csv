@@ -1,0 +1,13 @@
+student_id,first_name,last_name,email,attendance,assignment,project,exam
+S1001,Priya,Sharma,priya.sharma@example.edu,92,78,82,85
+S1002,Marcus,Bell,marcus.bell@example.edu,81,55,61,58
+S1003,Yuki,Tanaka,yuki.tanaka@example.edu,96,91,88,94
+S1004,Sofia,Rodriguez,sofia.rodriguez@example.edu,62,43,49,46
+S1005,Noah,Fitzgerald,noah.fitzgerald@example.edu,78,67,72,69
+S1006,Layla,Hassan,layla.hassan@example.edu,88,84,79,88
+S1007,Owen,Murphy,owen.murphy@example.edu,73,49,52,48
+S1008,Mei,Lin,mei.lin@example.edu,69,38,44,41
+S1009,Tariq,Ahmed,tariq.ahmed@example.edu,90,74,77,81
+S1010,Chloe,Bennett,chloe.bennett@example.edu,85,63,66,71
+S1011,Arjun,Mehta,arjun.mehta@example.edu,97,95,92,96
+S1012,Ella,Thompson,ella.thompson@example.edu,76,58,54,62
