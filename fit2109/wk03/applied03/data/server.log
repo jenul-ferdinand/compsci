@@ -1,0 +1,6 @@
+INFO 100 Startup complete
+WARN 200 Disk space low
+ERROR 404 Page not found
+ERROR 500 Database unavailable
+WARN 210 CPU temperature high
+ERROR 404 Page not found
