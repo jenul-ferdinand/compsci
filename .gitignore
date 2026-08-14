@@ -4,6 +4,8 @@ __MACOSX/
 ._*
 a.out
 *.o
+__pycache__/
+*.pyc
 
 fit3143/**/lec*.pdf
 fit3143/**/lec*.ppsx
