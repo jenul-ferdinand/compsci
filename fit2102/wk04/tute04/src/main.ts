@@ -68,7 +68,7 @@ abstract class RNG {
 export function createRngStreamFromSource<T>(source$: Observable<T>) {
     return function createRngStream(
         seed: number = 0,
-    ): Observable<RNG> {
+    ): Observable<IMPLEMENT_THIS> {
         const randomNumberStream = source$.pipe(IMPLEMENT_THIS);
 
         return randomNumberStream;
@@ -165,6 +165,8 @@ const main = () => {
      * - Use `startWith(null)` to trigger the game loop on first load
      * - Edits should be done throughout the code.
      *****************************************************************/
+
+    // what the fock
 };
 if (typeof window !== "undefined") {
     window.addEventListener("load", main);
