@@ -10,8 +10,6 @@ Coursework from my Computer Science degree at Monash University, one folder per 
 - [`fit3184/`](./fit3184): [FIT3184](https://handbook.monash.edu/2026/units/FIT3184?year=2026) (Cloud computing)
 - [`algorithms/`](https://github.com/jenul-ferdinand/algorithms): submodule containing FIT1008, FIT2004, and FIT3155 (algorithms and data structures units)
 
-More units to come.
-
 ## Cloning with submodules
 
 ```bash
