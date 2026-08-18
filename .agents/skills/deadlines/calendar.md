@@ -13,9 +13,11 @@ Conventions when a source gives only a week:
 - "in class week N" / "in workshop week N": the unit's timetabled class day that week; if unknown, treat as Monday of week N (earliest possible) and say so.
 - Weekly applied/tute work "due before next week's class": Monday of the following week.
 
-Class days (fill in from your timetable to sharpen in-class dates):
+Class days:
 
-- FIT2102: workshop ?, applied ?
-- FIT2109: workshop ?, applied ?
-- FIT3143: workshop ?, lab ?
-- FIT3184: seminar ?, applied ?
+- Monday: FIT3143 workshop, FIT3184 seminar, FIT3143 applied/lab, FIT2102 applied
+- Wednesday: FIT2109 applied, FIT3184 applied
+- Thursday: FIT2109 workshop (working, can't attend)
+- Friday: FIT2102 workshop (working, can't attend). FIT2102 quizzes run at the very start of this workshop, so quiz weeks (3, 5, 9, 12) need work moved to attend. Flag these a week ahead.
+
+So: FIT3143 in-class assessments (PST, labs, applied) fall on Monday of their week; FIT3184 applied on Wednesday; FIT2102 applied is due before Monday's class.
