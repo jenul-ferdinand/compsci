@@ -3,7 +3,7 @@
 Edit this when dates change. The skill converts "week N" references to dates from here.
 
 - Week 1 Monday: 2026-07-27
-- Mid-semester break: 2026-09-28 to 2026-10-02 (unconfirmed; if the FIT2109 test on 1 Oct turns out to be in a teaching week, the break is 21-25 Sep instead. Confirm from the Monash calendar and delete this note.)
+- Mid-semester break: 2026-09-21 to 2026-09-25 (confirmed).
 - Weeks after the break shift by one calendar week.
 - "Week 13/14" means SWOTVAC / exam period after week 12.
 
