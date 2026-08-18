@@ -306,7 +306,7 @@ function keyboardControl() {
                 { x: startProps.x, y: startProps.y },
             ),
         )
-        .subscribe(({ x, y }: IMPLEMENT_THIS) => {
+        .subscribe(({ x, y }: Pos) => {
             rect.setAttribute("x", String(x));
             rect.setAttribute("y", String(y));
         });
@@ -342,6 +342,7 @@ function keyboardControl() {
  * If you cannot complete the question, leave a comment explaining what you
  * tried, and you will get full marks.
  */
+type Row = Readonly<{ ms: number; word: string }>;
 
 function printWithDelay() {
     // This fetches the csv from your computer and converts it to a string
@@ -356,8 +357,16 @@ function printWithDelay() {
     );
 
     /** Write your code after here */
+    
+    const parse = (text: string): readonly Row[] => text.split("\n").map((line) => {
+        const [secs, word] = line.split(",");
+        return { ms: Number(secs) * 1000, word };
+    });
 
-    csvText$.pipe(IMPLEMENT_THIS).subscribe(IMPLEMENT_THIS);
+    csvText$.pipe(
+        mergeMap(text => parse(text)),
+        mergeMap(row => of(row.word).pipe(delay(row.ms)))
+    ).subscribe(word => console.log(word));
 }
 /**
  * Do Not Modify
