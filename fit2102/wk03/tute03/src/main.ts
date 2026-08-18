@@ -76,17 +76,6 @@ type RectProps = Readonly<{
     fill: string;
 }>;
 
-/**
- * Where a rectangle sits, used as the accumulated state in Exercises 3 and 4.
- *
- * Readonly makes TypeScript reject `pos.x = 5`, so the scan callbacks have to
- * build a new object instead of editing the one they were handed.
- */
-type Position = Readonly<{
-    x: number;
-    y: number;
-}>;
-
 const SVG_WIDTH = 600;
 const SVG_HEIGHT = 600;
 
@@ -153,32 +142,20 @@ function mousePosObservable() {
 
     /** Write your code after here */
 
-    // fromEvent wraps the same DOM event the version above listens to, but
-    // hands back a stream of MouseEvents instead of taking a callback. Nothing
-    // runs until someone subscribes: the observable is a description of the
-    // events, not the events themselves.
     // https://developer.mozilla.org/en-US/docs/Web/API/MouseEvent
     const source$ = fromEvent<MouseEvent>(document, "mousemove");
 
     source$
-        // Everything in the pipe stays pure. map turns a MouseEvent into a
-        // plain object saying what the page should show, and reads no DOM and
-        // writes no DOM. I can test this half by feeding it fake events.
         .pipe(
-            map(({ clientX, clientY }) => ({
-                text: `${clientX}, ${clientY}`,
-                highlight: clientX > 400,
+            map(e => ({
+                textContent: `${e.clientX}, ${e.clientY}`,
+                shouldHighlight: e.clientX > 400,
             })),
-        )
-        // subscribe is the only place allowed to touch the outside world. The
-        // if/else in mousePosEvents lives here as one toggle call, because the
-        // decision (clientX > 400) already happened upstream in map.
-        .subscribe(({ text, highlight }) => {
-            elem.textContent = text;
-            // Passing a boolean second argument makes toggle add the class when
-            // true and remove it when false, so no branch is needed.
-            elem.classList.toggle("highlight", highlight);
-        });
+        ) // This must be pure
+        .subscribe(({ textContent, shouldHighlight }) => {
+            elem.textContent = textContent;
+            elem.classList.toggle("highlight", shouldHighlight);
+        }); // Side effects should be contained here
 }
 
 /*****************************************************************
@@ -207,29 +184,14 @@ function animatedRect() {
 
     /** Write your code after here */
 
-    // interval(10) emits 0, 1, 2, ... every 10ms, giving 100 frames a second.
-    // The emitted number counts ticks and says nothing about position, so the
-    // pipe below converts ticks into x values.
-    const source$ = interval(10);
+    const source$ = interval(10); // 1000ms / 10ms = 100fps
 
     const move$ = source$
         .pipe(
-            // takeUntil watches a second observable and completes this one as
-            // soon as that observable emits. timer(1000) emits once at 1s, so
-            // the animation stops after 100 ticks. The deadline counts from
-            // when I subscribe, not from the last tick.
             takeUntil(timer(1000)),
-
-            // scan is reduce for streams: it holds an accumulator across
-            // emissions and emits the new accumulator each time. Here the
-            // accumulator is x, seeded at startProps.x, and each tick adds 1.
-            // Storing x here is what keeps the function pure. Reading it back
-            // with getAttribute would make the DOM the source of truth and
-            // make the same tick produce different results.
-            scan((x: number) => x + 1, startProps.x),
+            //scan((prevX, _tick) => prevX + 1, startProps.x), // Normal move right
+            scan((prevX, _tick) => prevX + (300 - prevX) * 0.025, startProps.x), // Game dev lerp formula just for fun
         )
-        // Rendering is the only side effect, and it happens after the state
-        // has already been decided upstream.
         .subscribe((newX: number) => rect.setAttribute("x", String(newX)));
 }
 
@@ -250,6 +212,8 @@ function animatedRect() {
  *
  * see: https://tgdwyer.github.io/functionalreactiveprogramming/#observable-streams
  */
+type Pos = Readonly<{ x: number; y: number }>;
+
 function animatedRect2() {
     const rect = initialiseRect(startProps, "animatedRect2");
 
@@ -257,25 +221,16 @@ function animatedRect2() {
 
     const moveDownRight$ = interval(10)
         .pipe(
-            // Stop taking values after some amount of time. 1.41s at 10ms per
-            // tick gives 141 ticks, so the rectangle travels 141px on each
-            // axis. That diagonal measures 141 * sqrt(2) = 200px, which is the
-            // distance Exercise 2 covered along x alone.
+            // Stop taking values after some amount of time
             takeUntil(timer(1410)),
 
-            // Exercise 2 accumulated a single number. Two coordinates need to
-            // move together, so the accumulator becomes one Position object
-            // holding both. scan still runs once per tick, and the callback
-            // builds a new object rather than editing the old one, which keeps
-            // every emitted Position immutable.
-            scan(({ x, y }: Position) => ({ x: x + 1, y: y + 1 }), {
+            // Update position of rectangle
+            scan(({ x, y }, _tick) => ({ x: x + 1, y: y + 1 }), {
                 x: startProps.x,
                 y: startProps.y,
             }),
         )
-        // Both attributes come from the same Position, so x and y can never
-        // drift out of sync.
-        .subscribe(({ x, y }: Position) => {
+        .subscribe(({ x, y }: Pos) => {
             rect.setAttribute("x", String(x));
             rect.setAttribute("y", String(y));
         });
@@ -290,20 +245,9 @@ function animatedRect2() {
  * /Challenge/: Try to make the rectangle move smoothly! This may
  *  require some research and changing the way we implement movement.
  */
-/** How far one keypress moves the rectangle, in pixels */
-const STEP = 10;
-
-/**
- * A keypress described as a change to one axis of the position.
- *
- * The four keys differ only in which axis they touch and by how much, so one
- * type covers all of them and the scan below stays a single expression. Typing
- * axis as `keyof Position` rather than `string` means TypeScript rejects a
- * typo like `{ axis: "z" }` at compile time.
- */
-type Move = Readonly<{
-    axis: keyof Position;
-    amount: number;
+type Delta = Readonly<{
+    axis: keyof Pos;
+    mag: number;
 }>;
 
 function keyboardControl() {
@@ -318,34 +262,31 @@ function keyboardControl() {
      *
      * Reference for KeyBoard events https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent
      *
-     * One keydown stream feeds all four keys. filter drops the events for other
-     * keys, then map replaces the KeyboardEvent with the Move it stands for.
-     * After that map, nothing downstream knows or cares that a keyboard was
-     * involved, which is why the same scan would work for buttons or a gamepad.
-     *
-     * @param keyCode value of KeyboardEvent.code, e.g. "KeyA"
-     * @param move the change in state this key represents
+     * @param keyCode
+     * @param delta
+     * identify the keypress and the associated change in state.
      * @returns Observable stream that indicates changes in state for
      *  the particular keypress
      */
-    const fromKey = (keyCode: string, move: Move): Observable<Move> =>
+    const fromKey = (keyCode: string, delta: Delta) =>
         key$.pipe(
             filter(({ code }) => code === keyCode),
-            map(() => move),
+            map(() => delta),
         );
 
     /**
      * /Hint/: QW4gb2JqZWN0IGxpa2UgeyBheGlzOiAneCcgfCAneScsIGFtb3VudDogbnVtYmVyIH0gY2FuIGJlIHVzZWQgdG8gcmVwcmVzZW50IGEgcGFydGljdWxhciBrZXlwcmVzcywgZS5nLiBQcmVzc2luZyBLZXlBIG1pZ2h0IHByb2R1Y2UgeyBheGlzOiAneCcsIGFtb3VudDogLTEwIH0=
      */
+    const SPEED = 10;
 
     /** Decrease x */
-    const left$ = fromKey("KeyA", { axis: "x", amount: -STEP });
+    const left$ = fromKey("KeyA", { axis: "x", mag: -SPEED });
     /** Decrease y */
-    const up$ = fromKey("KeyW", { axis: "y", amount: -STEP });
+    const up$ = fromKey("KeyW", { axis: "y", mag: -SPEED });
     /** Increase x */
-    const right$ = fromKey("KeyD", { axis: "x", amount: STEP });
+    const right$ = fromKey("KeyD", { axis: "x", mag: SPEED });
     /** Increase y */
-    const down$ = fromKey("KeyS", { axis: "y", amount: STEP });
+    const down$ = fromKey("KeyS", { axis: "y", mag: SPEED });
 
     /**
      * /Hint/: What operator can we use to merge observables?
@@ -355,25 +296,17 @@ function keyboardControl() {
      * /Hint 2/: This should make use of the scan function
      */
 
-    // merge subscribes to all four streams and forwards whatever any of them
-    // emits, in the order the keys were pressed. That collapses four
-    // sources into one stream of Moves, so a single scan can own the position.
     merge(left$, down$, up$, right$)
         .pipe(
-            // Same scan as Exercises 2 and 3, except the ticks now come from
-            // the user instead of a timer. The computed key [axis] picks which
-            // field to change, and the spread copies the other one, so each
-            // emission is a fresh Position and the previous one survives
-            // untouched.
             scan(
-                (pos: Position, { axis, amount }: Move): Position => ({
-                    ...pos,
-                    [axis]: pos[axis] + amount,
-                }),
+                (pos, { axis, mag }) =>
+                    axis === "x"
+                        ? { ...pos, x: pos.x + mag }
+                        : { ...pos, y: pos.y + mag },
                 { x: startProps.x, y: startProps.y },
             ),
         )
-        .subscribe(({ x, y }: Position) => {
+        .subscribe(({ x, y }: IMPLEMENT_THIS) => {
             rect.setAttribute("x", String(x));
             rect.setAttribute("y", String(y));
         });
@@ -424,52 +357,7 @@ function printWithDelay() {
 
     /** Write your code after here */
 
-    // csvText$ emits one value, the whole file as a string, then completes. The
-    // work is turning that single string into four values spread across ten
-    // seconds, which is the same shape as the assignment: parse a file into
-    // events, then place those events on a timeline.
-    csvText$
-        .pipe(
-            // Parse only. "1,apple\n3,banana\n..." becomes
-            // [{delayMs: 1000, fruit: "apple"}, {delayMs: 3000, ...}, ...].
-            // trim drops the missing trailing newline, and \r?\n covers a file
-            // saved on Windows. No timing decisions happen here.
-            map(text =>
-                text
-                    .trim()
-                    .split(/\r?\n/)
-                    .map(line => {
-                        const [seconds, fruit] = line.split(",");
-                        return {
-                            delayMs: Number(seconds) * 1000,
-                            fruit,
-                        } as const;
-                    }),
-            ),
-
-            // This is the part worth explaining. Each row turns into its own
-            // observable: of(fruit) emits once, and delay holds that emission
-            // back by the row's own time. merge subscribes to all four at the
-            // same moment, so all four clocks start together and each fires at
-            // its own absolute offset. The stream sorts itself by time, which
-            // is why cherry (2s, row 3) arrives before banana (3s, row 2).
-            //
-            // concat or concatMap would wait for each observable to complete
-            // before starting the next, adding the delays up to 1 + 3 + 2 + 10
-            // = 16s and keeping the file's order. That is the wrong reading of
-            // the question. mergeMap flattens the array of observables into
-            // the outer stream without imposing any order.
-            mergeMap(rows =>
-                merge(
-                    ...rows.map(({ delayMs, fruit }) =>
-                        of(fruit).pipe(delay(delayMs)),
-                    ),
-                ),
-            ),
-        )
-        // Logging is the side effect, and the pipe above decided both what to
-        // print and when.
-        .subscribe(fruit => console.log(fruit));
+    csvText$.pipe(IMPLEMENT_THIS).subscribe(IMPLEMENT_THIS);
 }
 /**
  * Do Not Modify
