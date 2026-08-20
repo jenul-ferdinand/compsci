@@ -19,3 +19,8 @@
 - Understand that a closure is an anonymous function that captures variables from its enclosing scope
 - Understand that higher-order functions receive functions as parameters or return functions
 - Understand that the built-in Array methods are higher-order functions which allow for very flexible array operations without hand-coded loops
+
+## Readings
+
+- [Levels of Abstraction](https://tgdwyer.github.io/levelsofabstraction/)
+- [JavaScript Introduction](https://tgdwyer.github.io/javascript1/)

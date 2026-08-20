@@ -21,3 +21,9 @@
 ### Declarative languages
 
 - Understand that HTML is an example of a declarative language
+
+## Readings
+
+- [TypeScript Introduction](https://tgdwyer.github.io/typescript1/)
+- [Functional Programming in JavaScript](https://tgdwyer.github.io/functionaljavascript/)
+- [HTML as a Declarative Language](https://tgdwyer.github.io/html/)

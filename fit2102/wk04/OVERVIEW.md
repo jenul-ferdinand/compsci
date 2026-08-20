@@ -14,3 +14,8 @@ The tute builds a random number stream, then a jumping dot game where RxJS pipel
 ### Functional reactive programming
 
 - Create interactive programs using Observable
+
+## Readings
+
+- [FRP Asteroids](https://tgdwyer.github.io/asteroids/)
+- [Higher-Order Functions](https://tgdwyer.github.io/higherorderfunctions/)

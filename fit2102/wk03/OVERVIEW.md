@@ -16,3 +16,8 @@ Lazy evaluation leads to infinite lists, which leads to open-ended sequences, wh
 ### Functional Reactive Programming
 
 - Explain the Observable pattern and create asynchronous programs using Functional Reactive Programming
+
+## Readings
+
+- [Lazy Evaluation](https://tgdwyer.github.io/lazyevaluation/)
+- [Functional Reactive Programming](https://tgdwyer.github.io/functionalreactiveprogramming/)
