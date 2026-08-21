@@ -120,7 +120,19 @@ const main = () => {
      * Output should be a function: (state) => newState
      *****************************************************************/
     const tick$: Observable<(s: State) => State> = interval(20).pipe(
-        map(_ => s => s),
+        map(_ => (s: State) => {
+            const newVelocity = s.yvel + Constants.GRAVITY;
+            const impactVelocity = -newVelocity * 0.7;
+            const rawPosition = s.ypos + newVelocity;
+            const hasLanded = rawPosition >= Constants.GROUND;
+
+            return {
+                ...s,
+                yvel: hasLanded ? impactVelocity : newVelocity,
+                ypos: Math.min(rawPosition, Constants.GROUND),
+                bounces: hasLanded ? s.bounces + 1 : s.bounces,
+            };
+        }),
     );
 
     /*****************************************************************
