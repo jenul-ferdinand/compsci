@@ -66,10 +66,11 @@ abstract class RNG {
  * @param seed The seed for the random number generator
  */
 export function createRngStreamFromSource<T>(source$: Observable<T>) {
-    return function createRngStream(
-        seed: number = 0,
-    ): Observable<IMPLEMENT_THIS> {
-        const randomNumberStream = source$.pipe(IMPLEMENT_THIS);
+    return function createRngStream(seed: number = 0): Observable<number> {
+        const randomNumberStream = source$.pipe(
+            scan((seedAccumulation, _) => RNG.hash(seedAccumulation), seed),
+            map((hashedSeed, _) => RNG.scale(hashedSeed)),
+        );
 
         return randomNumberStream;
     };
