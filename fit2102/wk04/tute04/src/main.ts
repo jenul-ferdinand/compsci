@@ -144,8 +144,9 @@ const main = () => {
      *
      * This stream will represent the full evolution of game state over time.
      *****************************************************************/
-    const state$: Observable<State> = merge(IMPLEMENT_THIS).pipe(
-        scan((state, reducerFn) => IMPLEMENT_THIS, initialState),
+    const state$: Observable<State> = merge(tick$, jump$).pipe(
+        scan((state, reducerFn) => reducerFn(state), initialState),
+        // note: reducerFn is a changing function, taking a fixed operation.
     );
 
     /*****************************************************************
