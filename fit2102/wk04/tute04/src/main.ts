@@ -161,7 +161,9 @@ const main = () => {
     const bounceCounter = document.getElementById("numBounces") as HTMLElement;
 
     state$.subscribe(state => {
-        IMPLEMENT_THIS;
+        // the place of impurity
+        dot.style.top = `${state.ypos}px`;
+        bounceCounter.textContent = `${state.bounces}`;
     });
 
     /*****************************************************************
