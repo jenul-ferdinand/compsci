@@ -81,9 +81,17 @@ const main = () => {
     // - vertical position of dot
     // - vertical velocity of dot
     // - number of bounces
-    type State = IMPLEMENT_THIS;
+    type State = Readonly<{
+        ypos: number;
+        yvel: number;
+        bounces: number;
+    }>;
 
-    const initialState: State = IMPLEMENT_THIS;
+    const initialState: State = {
+        ypos: 0,
+        yvel: 0,
+        bounces: 0,
+    };
 
     /*****************************************************************
      * Exercise 2 — Create the jump stream
