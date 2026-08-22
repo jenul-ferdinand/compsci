@@ -135,7 +135,7 @@ const main = () => {
                 ...s,
                 yvel: hasLanded ? impactVelocity : newVelocity,
                 ypos: Math.min(rawPosition, Constants.GROUND),
-                bounces: hasLanded && s.yvel > 0 ? s.bounces + 1 : s.bounces,
+                bounces: hasLanded && s.yvel > 6 ? s.bounces + 1 : s.bounces,
             };
         }),
     );
