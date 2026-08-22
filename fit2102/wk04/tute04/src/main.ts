@@ -18,6 +18,7 @@ const Constants = {
     GROUND: 378.5,
     SEED: 1234,
     DAMPING: 0.7,
+    JUMP_VELOCITY: -10,
 };
 
 // Stub value to indicate an implementation
@@ -107,7 +108,10 @@ const main = () => {
     const jump$: Observable<(s: State) => State> = fromEvent<KeyboardEvent>(
         document,
         "keydown",
-    ).pipe(map(_ => s => s));
+    ).pipe(
+        filter(e => e.code === "Space"),
+        map(_ => s => ({ ...s, yvel: Constants.JUMP_VELOCITY })),
+    );
 
     /*****************************************************************
      * Exercise 3 — Create the tick stream
