@@ -17,6 +17,7 @@ const Constants = {
     GRAVITY: 1,
     GROUND: 378.5,
     SEED: 1234,
+    DAMPING: 0.7,
 };
 
 // Stub value to indicate an implementation
@@ -122,7 +123,7 @@ const main = () => {
     const tick$: Observable<(s: State) => State> = interval(20).pipe(
         map(_ => (s: State) => {
             const newVelocity = s.yvel + Constants.GRAVITY;
-            const impactVelocity = -newVelocity * 0.7;
+            const impactVelocity = -newVelocity * Constants.DAMPING;
             const rawPosition = s.ypos + newVelocity;
             const hasLanded = rawPosition >= Constants.GROUND;
 
