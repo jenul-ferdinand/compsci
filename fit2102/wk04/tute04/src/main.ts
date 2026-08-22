@@ -7,6 +7,8 @@ import {
     map,
     merge,
     scan,
+    startWith,
+    switchMap,
     type Observable,
 } from "rxjs";
 
@@ -173,6 +175,24 @@ const main = () => {
     );
 
     /*****************************************************************
+     * Exercise 7 — Full game restart using `switchMap`
+     *
+     * Use `switchMap` to reset the entire game logic whenever the "R" key is pressed.
+     *
+     *
+     * Tips:
+     * - Create a `restart$` stream from "keydown" events filtered for "KeyR"
+     * - Make sure you restart the bounce counter!
+     * - Use `startWith(null)` to trigger the game loop on first load
+     * - Edits should be done throughout the code.
+     *****************************************************************/
+
+    const restart$ = fromEvent<KeyboardEvent>(document, "keydown").pipe(
+        filter(e => e.key === "r" || e.key === "R"),
+        startWith(null), // starts stream again
+    );
+
+    /*****************************************************************
      * Exercise 4 — Create the game state stream
      *
      * Combine the `jump$` and `tick$` streams using `merge`.
@@ -181,9 +201,13 @@ const main = () => {
      *
      * This stream will represent the full evolution of game state over time.
      *****************************************************************/
-    const state$: Observable<State> = merge(tick$, jump$).pipe(
-        scan((state, reducerFn) => reducerFn(state), initialState),
-        // note: reducerFn is a changing function, taking a fixed operation.
+    const state$: Observable<State> = restart$.pipe(
+        switchMap(() => // flatten into one stream
+            merge(tick$, jump$).pipe(
+                scan((state, reducerFn) => reducerFn(state), initialState),
+                // note: reducerFn is a changing function, taking a fixed operation.
+            ),
+        ),
     );
 
     /*****************************************************************
@@ -202,21 +226,6 @@ const main = () => {
         dot.style.top = `${state.ypos}px`;
         bounceCounter.textContent = `${state.bounces}`;
     });
-
-    /*****************************************************************
-     * Exercise 7 — Full game restart using `switchMap`
-     *
-     * Use `switchMap` to reset the entire game logic whenever the "R" key is pressed.
-     *
-     *
-     * Tips:
-     * - Create a `restart$` stream from "keydown" events filtered for "KeyR"
-     * - Make sure you restart the bounce counter!
-     * - Use `startWith(null)` to trigger the game loop on first load
-     * - Edits should be done throughout the code.
-     *****************************************************************/
-
-    // what the fock
 };
 if (typeof window !== "undefined") {
     window.addEventListener("load", main);
