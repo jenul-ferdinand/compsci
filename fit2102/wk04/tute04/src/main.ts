@@ -18,7 +18,9 @@ const Constants = {
     GROUND: 378.5,
     SEED: 1234,
     DAMPING: 0.7,
-    JUMP_VELOCITY: -10,
+    // JUMP_VELOCITY: -10,
+    JUMP_MAX: -6,
+    JUMP_MIN: -12,
 };
 
 // Stub value to indicate an implementation
@@ -105,13 +107,13 @@ const main = () => {
      *
      * This should produce a stream of (state) => newState functions.
      *****************************************************************/
-    const jump$: Observable<(s: State) => State> = fromEvent<KeyboardEvent>(
-        document,
-        "keydown",
-    ).pipe(
-        filter(e => e.code === "Space"),
-        map(_ => s => ({ ...s, yvel: Constants.JUMP_VELOCITY })),
-    );
+    // const jump$: Observable<(s: State) => State> = fromEvent<KeyboardEvent>(
+    //     document,
+    //     "keydown",
+    // ).pipe(
+    //     filter(e => e.code === "Space"),
+    //     map(_ => s => ({ ...s, yvel: Constants.JUMP_VELOCITY })),
+    // );
 
     /*****************************************************************
      * Exercise 3 — Create the tick stream
@@ -138,6 +140,36 @@ const main = () => {
                 bounces: hasLanded && s.yvel > 6 ? s.bounces + 1 : s.bounces,
             };
         }),
+    );
+
+    /*****************************************************************
+     * Exercise 6 — Add Random Jump Strength
+     *
+     * Replace the fixed jump velocity with a random one using a stream of
+     * random numbers generated each time the dot jumps.
+     *
+     * Tips:
+     * - Convert the number in [-1, 1] to a jump strength (e.g. in [-12, -6])
+     * - Edits should be done throughout the code.
+     *****************************************************************/
+
+    const spacePress$ = fromEvent<KeyboardEvent>(document, "keydown").pipe(
+        filter(e => e.code === "Space"),
+    );
+
+    const toJumpVelocity = (r: number): number =>
+        // scale between jump min and jump max using the random number
+        ((Constants.JUMP_MAX - Constants.JUMP_MIN) * r +
+            (Constants.JUMP_MAX + Constants.JUMP_MIN)) /
+        2;
+
+    const jump$: Observable<(s: State) => State> = createRngStreamFromSource(
+        spacePress$,
+    )(Constants.SEED).pipe(
+        map(randomNumber => (s: State) => ({
+            ...s,
+            yvel: toJumpVelocity(randomNumber),
+        })),
     );
 
     /*****************************************************************
@@ -170,17 +202,6 @@ const main = () => {
         dot.style.top = `${state.ypos}px`;
         bounceCounter.textContent = `${state.bounces}`;
     });
-
-    /*****************************************************************
-     * Exercise 6 — Add Random Jump Strength
-     *
-     * Replace the fixed jump velocity with a random one using a stream of
-     * random numbers generated each time the dot jumps.
-     *
-     * Tips:
-     * - Convert the number in [-1, 1] to a jump strength (e.g. in [-12, -6])
-     * - Edits should be done throughout the code.
-     *****************************************************************/
 
     /*****************************************************************
      * Exercise 7 — Full game restart using `switchMap`
