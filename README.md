@@ -1,4 +1,8 @@
-# Computer Science Coursework
+# Computer science work
+
+<img width="200" alt="Cat Cringe GIF" src="https://github.com/user-attachments/assets/e3e73058-070c-4d1c-9a24-d4e48669c804" />
+
+<img width="340" alt="Jjk Naoya GIF" src="https://github.com/user-attachments/assets/2d5fae13-97a2-480e-8e4b-4c7772f4891f" />
 
 Coursework from my Computer Science degree at Monash University, one folder per unit.
 
