@@ -25,18 +25,20 @@ Attendance matters: every assessment happens in class.
 
 | Week | Lecture topic |
 |---|---|
-| 1 | Introduction, parallel/distributed systems |
-| 2 | Processes, networks, IPC/RPC |
-| 3 | Pipelines, superscalar, vector processing |
-| 4 | Data parallel architectures, SIMD |
-| 5 | MIMD, distributed memory |
-| 6 | Parallel processing in clusters and clouds |
-| 7 | Performance models, Amdahl's law |
-| 8 | GPUs and NPUs, programming models |
-| 9 | Synchronisation, mutex, deadlocks |
-| 10 | Distributed transactions, concurrency, consensus |
-| 11 | Matrix multiplication, partitioning |
-| 12 | Exponential growth in parallel systems |
+| 1 | Introduction to Parallel Computing |
+| 2 | Inter Process Communications in Parallel Computing |
+| 3 | Pipelining and Superscalar Processing |
+| 4 | Single Instruction Multiple Data Architectures |
+| 5 | Multiple Instruction Multiple Data and Distributed Memory Architectures |
+| 6 | Cluster, Performance, and Clouds |
+| 7 | Parallel Application Performance Modelling |
+| 8 | Introduction to GPUs and NPUs |
+| 9 | Synchronisation, MUTEX, Deadlocks |
+| 10 | Election Algorithms and Concurrency Control |
+| 11 | Matrix Multiplication and Partitioning |
+| 12 | Exponential Growth versus Performance Planning |
+
+The mid-semester break falls between weeks 8 and 9.
 
 ## Layout
 
