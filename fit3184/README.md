@@ -34,18 +34,20 @@ Admin contact: fit3184.admin@monash.edu, or the Ed forum.
 
 ## Syllabus
 
-1. Basic networking & cloud virtual machines
-2. Cloud paradigms & compute (IaaS)
-3. Cloud storage architectures & data management
-4. Containerization (Docker)
-5. Web services, APIs, SOA → microservices
-6. Scalability, load balancing, HA, managed Kubernetes
-7. Advanced cloud networking & VPCs
-8. Serverless & event-driven architecture
-9. AI/ML in cloud 1 (AWS SageMaker, NLP, Lex)
-10. AI/ML in cloud 2 (MLOps, scaling production AI)
-11. Cloud security & identity
-12. Industry talk, revision, future trends (DevSecOps on AWS)
+1. Networking Foundations and Cloud Virtual Machines
+2. Cloud Computing Paradigms and Virtualisation Technology
+3. Cloud Storage Foundations and Architectures
+4. Containerisation in the Cloud
+5. Service-Oriented Architecture, REST and Microservices
+6. Container Orchestration in the Cloud
+7. Advanced Cloud Networking and VPCs
+8. Serverless Computing and Event-Driven Architecture
+9. Basic AI in the Cloud With AWS AI/ML Services
+10. Advanced AI/ML and MLOps in the Cloud
+11. Cloud Security and DevSecOps
+12. Industry Talk and Unit Revision
+
+The mid-semester break falls between weeks 8 and 9.
 
 ## Layout
 
