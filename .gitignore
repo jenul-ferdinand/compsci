@@ -36,5 +36,8 @@ fit3184/**/optional*.pdf
 fit2102/ass01/
 fit2109/ass01/
 
+# submission bundles
+fit2102/**/tute*.zip
+
 # generated at runtime by workshop03
 fit2109/wk03/workshop03/data/audit.log
