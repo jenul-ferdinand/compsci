@@ -25,6 +25,23 @@ One zip per week to Moodle. Delete `node_modules/` before zipping (the submissio
 
 Interactive exercises supporting the weekly exercises and assignments. They assume the lecture videos and readings are done beforehand.
 
+## Syllabus
+
+1. Introduction to Functional Programming in JavaScript
+2. TypeScript and Functional Programming Techniques
+3. Functional Reactive Programming in JavaScript
+4. Building Interactive Programs with Functional Reactive Programming
+5. Exploring Lambda Calculus and Combinators
+6. Introduction to Haskell
+7. Exploring Haskell: Typeclasses and Data Types
+8. Functors and Applicatives in Haskell
+9. Exploring Folds and Traversables in Haskell
+10. Effectful Programming with Monads and IO in Haskell
+11. Parser Combinators in Haskell
+12. Emerging Paradigms and Constraint Programming with MiniZinc
+
+The first half is JavaScript and TypeScript, the second half Haskell. Week 12 moves to MiniZinc, which the course notes do not cover.
+
 ## Layout
 
-- `wkXX/`: one folder per week with `OVERVIEW.md` (learning objectives) and `tute/` (applied exercise project).
+- `wkXX/`: one folder per week with `OVERVIEW.md` (learning objectives and course notes readings) and `tuteXX/` (applied exercise project).
