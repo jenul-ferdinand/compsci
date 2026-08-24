@@ -1,6 +1,7 @@
 {
     "git.scanRepositories": [
-        "fit3143/group"
+        "fit3143/group",
+        "fit2102/ass01"
     ],
     "[c]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
