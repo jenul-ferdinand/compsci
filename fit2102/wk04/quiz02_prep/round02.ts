@@ -72,3 +72,9 @@ const filter =
 //
 // Q11)
 // Rewrite const f = x => double(increment(x)) point-free.
+
+const increment = (x: number) => x+1
+const double = (x: number) => x*2
+const pointFreeF = compose(double)(increment)
+//                            f       g    
+// increment first because g first, then double.
