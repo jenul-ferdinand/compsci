@@ -3,6 +3,7 @@
     "outputStyle": "Concise",
     "model": "opus[1m]",
     "env": { "CLAUDE_CODE_EFFORT_LEVEL": "max" },
+    "attribution": { "commit": "", "pr": "", "sessionUrl": false },
     "permissions": {
         "deny": [
             "Edit(algorithms/**)", 
