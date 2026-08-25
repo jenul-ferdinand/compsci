@@ -1,3 +1,5 @@
+/// Functions, currying, closures
+
 const log = console.log;
 
 //
