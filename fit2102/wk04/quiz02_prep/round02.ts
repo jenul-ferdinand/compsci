@@ -24,4 +24,8 @@ const flip =
 
 // 
 // Q8)
-// 
+// Given the compose function, evaluate compose(x => x+1)(x => x*2)(5). Which
+// function runs first?
+
+// The outer value 5, is passed in to g(x)=g(5)=10, then finally f(x)=f(10)=11
+// So yes... g runs first. Just like you would do math...
