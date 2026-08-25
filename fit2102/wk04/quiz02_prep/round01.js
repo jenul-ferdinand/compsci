@@ -48,3 +48,19 @@ const twice = f => x => f(f(x))
 // twice takes a function f and returns a new function that applies the 
 // function f twice on a value x of type A, always the same type A but f can be 
 // any function given it's A => A
+
+
+// Q5) 
+// Define purity. Why is nums.map(x => x*2) pure but 
+// nums.forEach(x => console.log(x)) not?
+
+// A function is pure if it is deterministic and has no side effects.
+// 
+// nums.map is pure because mapping x => x*2 creates an output determined by
+// the input, and it has no side effects (touches nothing else). map creates
+// a new array and nums remains unchanged.
+//
+// nums.forEach however, makes a console.log call, this breaks rule 2, it has
+// a side effect and touches the outside world... 
+//
+// Purity is what lets us reason about code by substitution.
