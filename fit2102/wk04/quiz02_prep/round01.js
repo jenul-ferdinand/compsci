@@ -37,3 +37,14 @@ log(c1(), c1(), c2());
 // ++n is a pre-increment, which increments then yields the value. So the first
 // call yields 1. n++ would yield 0 first and print 0 1 0 instead of 1 2 1.
 
+
+// Q4)
+// Write twice such that twice(f)(x) applied f to x twice. Give its TypeScript
+// type.
+
+const twice = f => x => f(f(x))
+
+// Type <A>(f: (x: A) => A) => (x: A) => A
+// twice takes a function f and returns a new function that applies the 
+// function f twice on a value x of type A, always the same type A but f can be 
+// any function given it's A => A
