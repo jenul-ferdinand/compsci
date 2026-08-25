@@ -59,4 +59,16 @@ const map =
   <A, B>(f: (a: A) => B) =>
   (arr: A[]): B[] =>
     arr.reduce<B[]>((acc, x) => [...acc, f(x)], []);
-    //         ^ accumulator type, array of mapped B values that bubble up.
+//             ^ accumulator type, array of mapped B values that bubble up.
+
+// filter creates a new array that contains only the elements that pass a
+// specific condition given by a function, doesn't have to be boolean just has
+// to be truthy or falsy.
+const filter =
+  <A>(pred: (a: A) => boolean) =>
+  (arr: A[]): A[] =>
+    arr.reduce<A[]>((acc, x) => (pred(x) ? [...acc, x] : acc), []);
+
+//
+// Q10)
+//
