@@ -29,3 +29,18 @@ const flip =
 
 // The outer value 5, is passed in to g(x)=g(5)=10, then finally f(x)=f(10)=11
 // So yes... g runs first. Just like you would do math...
+
+//
+// Q9)
+// Define I and K in JavaScript. Reduce K(I) by hand. What does the result do
+// when applied to two arguments?
+
+// beta reduction..
+// 1. take the body, everything RHS of the first =>
+// 2. replace every occurrence of param in it with arg
+// 3. the result is the body. The parameter and its arrow are gone.
+
+// K = x => (y => x) [identity]
+// I = x => x [constant]
+// beta reduced... Original parameter got consumed.
+// K(I) = y => I
