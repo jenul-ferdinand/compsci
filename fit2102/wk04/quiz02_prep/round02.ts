@@ -22,7 +22,7 @@ const flip =
   (b: B): C =>
     f(a)(b);
 
-// 
+//
 // Q8)
 // Given the compose function, evaluate compose(x => x+1)(x => x*2)(5). Which
 // function runs first?
@@ -44,3 +44,19 @@ const flip =
 // I = x => x [constant]
 // beta reduced... Original parameter got consumed.
 // K(I) = y => I
+
+//
+// Q9)
+// Express map and filter purely in terms of reduce.
+
+// reduce allows us to combine stuff into a single output value.
+[1, 2, 3].reduce((acc, x) => acc + x, 1);
+
+// creating map with reduce, we need to curry a function in
+// remembering that map returns a NEW array with mutated values.
+const arr = [1, 2, 3];
+const map =
+  <A, B>(f: (a: A) => B) =>
+  (arr: A[]): B[] =>
+    arr.reduce<B[]>((acc, x) => [...acc, f(x)], []);
+    //         ^ accumulator type, array of mapped B values that bubble up.
