@@ -46,7 +46,7 @@ const flip =
 // K(I) = y => I
 
 //
-// Q9)
+// Q10)
 // Express map and filter purely in terms of reduce.
 
 // reduce allows us to combine stuff into a single output value.
@@ -70,5 +70,5 @@ const filter =
     arr.reduce<A[]>((acc, x) => (pred(x) ? [...acc, x] : acc), []);
 
 //
-// Q10)
-//
+// Q11)
+// Rewrite const f = x => double(increment(x)) point-free.
