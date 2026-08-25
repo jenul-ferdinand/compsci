@@ -64,3 +64,38 @@ const twice = f => x => f(f(x))
 // a side effect and touches the outside world... 
 //
 // Purity is what lets us reason about code by substitution.
+
+
+// Q6)
+// What is closure capturing, exactly: the value of the variable, or the 
+// variable itself? Prove your answer with a for loop example using var versus
+// let.
+
+// Closure capturing allows an inner function or code block to read and write
+// variables from the outer scope. 
+
+let x = 1
+const f = () => x
+x = 2
+f(x) // 2 not 1
+
+// f was created when x was 1, if closures captured values then f(x) would be 
+// 1 not 2. But it is 2, this means what it holds is a reference to the binding
+// x.
+
+const varFns = []
+for (var i = 0; i < 3; i++) {
+    varFns.push(() => i)
+}
+
+const letFns = []
+for (let i = 0; i < 3; i ++) {
+    letFns.push(() => i)
+}
+
+log(varFns.map(g => g())) // [3,3,3]
+log(letFns.map(g => g())) // [0,1,2]
+
+// var i is function-scoped, so the declaration is seen outside of the loop,
+// the final value of i=3, is read from .map(g => g()). This is why we don't
+// use var anymore... Whereas let gets a fresh binding per iteration.
