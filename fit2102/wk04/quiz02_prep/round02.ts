@@ -83,3 +83,9 @@ const pointFreeF = compose(double)(increment)
 // Q12)
 // Rewrite const g = arr => sum(arr.map(x => x*x)) point-free.
 
+const sum = (arr: number[]) => arr.reduce((acc, x) => acc + x, 0)
+const square = (x: number) => x * x;
+const pointFreeG = compose(sum)(map(square))
+//                          f       g
+// square the numbers first, then sum em up.
+
