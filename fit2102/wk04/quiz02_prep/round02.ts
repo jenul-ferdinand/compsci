@@ -118,8 +118,8 @@ const unsafe = ["1", "2", "3"].map(parseInt); // [1, NaN, NaN]
 
 // Currying makes partial application trivial.
 
-const add = (a: number, b: number) => a + b; // not curried bc it takes both.
-const add5 = add.bind(null, 5); // partially applied anyway
+const addd = (a: number, b: number) => a + b; // not curried bc it takes both.
+const add5 = addd.bind(null, 5); // partially applied anyway
 
 // bind is JS built in partial application for functions that were never
 // curried in the first place.
