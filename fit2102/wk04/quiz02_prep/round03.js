@@ -33,3 +33,26 @@ const headd = c => c(K)
 const taill = c => c(K(I)) 
 // K(I) gives second because K returns its first argument (I) and trashes a,
 // then I returns b
+
+//
+// Q18)
+// Given const lazyNats = v => sel => sel(v, lazyNats(v+1)), define the value
+// and next selectors. Why doesn't this recurse forever at definition time.
+
+const lazyNats = v => sel => sel(v, lazyNats(v+1))
+
+const value = s => s((v, n) => v)
+const next = s => s((v, n) => n)
+
+let nats = lazyNats(0) // example
+for (let i = 0; i < 5; i++) {
+    console.log(value(nats))
+    nats = next(nats);
+}
+
+// a function body doesn't run until the function is called. The lambda is 
+// preventing lazyNats(v+1) from being called. sel => is called the thunk.
+//
+// this is a counterexample that does recurse forever (if called) bc there's 
+// no lambda beforehand.
+const natsBroken = v => [v, ...natsBroken(v+1)];
