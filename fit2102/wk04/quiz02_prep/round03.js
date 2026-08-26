@@ -21,3 +21,15 @@ const first = a => b => a
 const second = a => b => b
 const head = c => c(first)
 const tail = c => c(second)
+
+//
+// Q17)
+// Now defin head and tail using only K and I
+
+const K = x => y => x
+const I = x => x
+
+const headd = c => c(K)
+const taill = c => c(K(I)) 
+// K(I) gives second because K returns its first argument (I) and trashes a,
+// then I returns b
