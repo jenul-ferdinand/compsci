@@ -56,3 +56,12 @@ for (let i = 0; i < 5; i++) {
 // this is a counterexample that does recurse forever (if called) bc there's 
 // no lambda beforehand.
 const natsBroken = v => [v, ...natsBroken(v+1)];
+
+//
+// Q19)
+// Write getNth(n, seq) for that sequence type.
+
+const getNth = (n, seq) => n === 0 ? value(seq) : getNth(n-1, next(seq))
+// n tells us how many steps down to take. So we decrement on each recursive 
+// call and we also pass in the next lazyNats function. When n reaches 0 we know
+// we complete, returning the value.
