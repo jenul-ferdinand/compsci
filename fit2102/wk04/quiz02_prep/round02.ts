@@ -78,3 +78,8 @@ const double = (x: number) => x*2
 const pointFreeF = compose(double)(increment)
 //                            f       g    
 // increment first because g first, then double.
+
+//
+// Q12)
+// Rewrite const g = arr => sum(arr.map(x => x*x)) point-free.
+
