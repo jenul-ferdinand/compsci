@@ -103,3 +103,25 @@ const squaringEta = [1,2,3].map(square)
 const safe = ["1", "2", "3"].map(x => parseInt(x)) // [1, 2, 3]
 const unsafe = ["1", "2", "3"].map(parseInt) // [1, NaN, NaN]
 
+//
+// Q14)
+// Currying versus partial application: what is the difference? Give one 
+// example of each.
+
+// Currying is a transformation of the function itself. It's a chain of one
+// argument functions, nothing has been applied yet, a curried function that's
+// never called is still curried.
+
+// Partial application is supplying some but not all of the arguments and
+// keeping the function that's waiting for the rest. It's something you do 
+// from a call. And you can do it repeatedly.
+
+// Currying makes partial application trivial.
+
+const add = (a: number, b: number) => a + b; // not curried bc it takes both.
+const add5 = add.bind(null, 5) // partially applied anyway
+
+// bind is JS built in partial application for functions that were never
+// curried in the first place.
+
+
