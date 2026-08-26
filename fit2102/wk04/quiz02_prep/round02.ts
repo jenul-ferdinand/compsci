@@ -89,3 +89,12 @@ const pointFreeG = compose(sum)(map(square))
 //                          f       g
 // square the numbers first, then sum em up.
 
+//
+// Q13)
+// What is eta reduction in JavaScript terms? Give an example of lambda in 
+// your own tute code that could be eta reduced.
+
+const squaring = [1,2,3].map(x => square(x))
+const squaringEta = [1,2,3].map(square)
+// Simply just this, we don't need to explicity provide the parameter and
+// arrow function.
