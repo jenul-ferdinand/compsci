@@ -12,7 +12,7 @@ def get_counter(should_increment: bool = False):
     count = 0
     if os.path.exists(COUNTER_FILE):
         with open(COUNTER_FILE, 'r') as f:
-            count = f.read().strip()
+            count = int(f.read().strip())
     if should_increment:
         count += 1
         with open(COUNTER_FILE, 'w') as f:
@@ -36,10 +36,10 @@ def unit(unitcode: str):
         return {
             "message": f"This is the {unitcode.upper()} handbook, you are {count} visitor"
         }
-    except HTTPException as e:
+    except HTTPException:
         raise HTTPException(
             status_code=500,
-            detail=f'Error accessing counter: {str(e)}'
+            detail="Internal server error"
         )
 
 # run dis with uvicorn main:app --host 0.0.0.0 --reload --port 8080
