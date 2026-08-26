@@ -42,3 +42,5 @@ fit2102/**/tute*.zip
 
 # generated at runtime by workshop03
 fit2109/wk03/workshop03/data/audit.log
+# generated at runtime by course-api
+fit3184/wk05/course-api/counter.txt
