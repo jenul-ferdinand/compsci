@@ -98,3 +98,8 @@ const squaring = [1,2,3].map(x => square(x))
 const squaringEta = [1,2,3].map(square)
 // Simply just this, we don't need to explicity provide the parameter and
 // arrow function.
+
+// But note that it may not always be safe. For example:
+const safe = ["1", "2", "3"].map(x => parseInt(x)) // [1, 2, 3]
+const unsafe = ["1", "2", "3"].map(parseInt) // [1, NaN, NaN]
+
