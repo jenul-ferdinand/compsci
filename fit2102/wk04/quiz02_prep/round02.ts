@@ -73,39 +73,39 @@ const filter =
 // Q11)
 // Rewrite const f = x => double(increment(x)) point-free.
 
-const increment = (x: number) => x+1
-const double = (x: number) => x*2
-const pointFreeF = compose(double)(increment)
-//                            f       g    
+const increment = (x: number) => x + 1;
+const double = (x: number) => x * 2;
+const pointFreeF = compose(double)(increment);
+//                            f       g
 // increment first because g first, then double.
 
 //
 // Q12)
 // Rewrite const g = arr => sum(arr.map(x => x*x)) point-free.
 
-const sum = (arr: number[]) => arr.reduce((acc, x) => acc + x, 0)
+const sum = (arr: number[]) => arr.reduce((acc, x) => acc + x, 0);
 const square = (x: number) => x * x;
-const pointFreeG = compose(sum)(map(square))
+const pointFreeG = compose(sum)(map(square));
 //                          f       g
 // square the numbers first, then sum em up.
 
 //
 // Q13)
-// What is eta reduction in JavaScript terms? Give an example of lambda in 
+// What is eta reduction in JavaScript terms? Give an example of lambda in
 // your own tute code that could be eta reduced.
 
-const squaring = [1,2,3].map(x => square(x))
-const squaringEta = [1,2,3].map(square)
+const squaring = [1, 2, 3].map((x) => square(x));
+const squaringEta = [1, 2, 3].map(square);
 // Simply just this, we don't need to explicity provide the parameter and
 // arrow function.
 
 // But note that it may not always be safe. For example:
-const safe = ["1", "2", "3"].map(x => parseInt(x)) // [1, 2, 3]
-const unsafe = ["1", "2", "3"].map(parseInt) // [1, NaN, NaN]
+const safe = ["1", "2", "3"].map((x) => parseInt(x)); // [1, 2, 3]
+const unsafe = ["1", "2", "3"].map(parseInt); // [1, NaN, NaN]
 
 //
 // Q14)
-// Currying versus partial application: what is the difference? Give one 
+// Currying versus partial application: what is the difference? Give one
 // example of each.
 
 // Currying is a transformation of the function itself. It's a chain of one
@@ -113,15 +113,13 @@ const unsafe = ["1", "2", "3"].map(parseInt) // [1, NaN, NaN]
 // never called is still curried.
 
 // Partial application is supplying some but not all of the arguments and
-// keeping the function that's waiting for the rest. It's something you do 
+// keeping the function that's waiting for the rest. It's something you do
 // from a call. And you can do it repeatedly.
 
 // Currying makes partial application trivial.
 
 const add = (a: number, b: number) => a + b; // not curried bc it takes both.
-const add5 = add.bind(null, 5) // partially applied anyway
+const add5 = add.bind(null, 5); // partially applied anyway
 
 // bind is JS built in partial application for functions that were never
 // curried in the first place.
-
-
