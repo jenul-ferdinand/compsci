@@ -13,11 +13,19 @@ Conventions when a source gives only a week:
 - "in class week N" / "in workshop week N": the unit's timetabled class day that week; if unknown, treat as Monday of week N (earliest possible) and say so.
 - Weekly applied/tute work "due before next week's class": Monday of the following week.
 
-Class days:
+Class days, times, and locations:
 
-- Monday: FIT3143 workshop, FIT3184 seminar, FIT3143 applied/lab, FIT2102 applied
-- Wednesday: FIT2109 applied, FIT3184 applied
-- Thursday: FIT2109 workshop (working, can't attend)
-- Friday: FIT2102 workshop (working, can't attend). FIT2102 quizzes run at the very start of this workshop, so quiz weeks (3, 5, 9, 12) need work moved to attend. Flag these a week ahead.
+- Monday:
+  - 8-10am: FIT3143 workshop, G02 South 1 Lecture Theatre. Skipped unless there's a quiz, watched online otherwise.
+  - 10am-12pm: FIT3184 seminar, online.
+  - 12-2pm: FIT3143 applied/lab, Menzies WG03.
+  - 2-5pm: FIT2102 applied, Alan Finkel Building for Technology 303.
+- Wednesday:
+  - 10am-12pm: FIT2109 applied, Alan Finkel 304.
+  - 12-2pm: FIT3184 applied, AG16 North West Portables.
+- Thursday:
+  - 8-10am: FIT2109 workshop, online. Working, can't attend.
+- Friday:
+  - 8-10am: FIT2102 workshop, G81 Learning and Teaching Building. Working, can't attend. FIT2102 quizzes run at the very start of this workshop, so quiz weeks (3, 5, 9, 12) need work moved to attend. Flag these a week ahead.
 
 So: FIT3143 in-class assessments (PST, labs, applied) fall on Monday of their week; FIT3184 applied on Wednesday; FIT2102 applied is due before Monday's class.
