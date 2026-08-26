@@ -2,7 +2,8 @@
     "git.scanRepositories": [
         "fit3143/group",
         "fit2102/ass01",
-        "fit2109/ass01"
+        "fit2109/ass01",
+        "fit2109/wk05/applied05/logtool_git_remote"
     ],
     "[c]": {
         "editor.defaultFormatter": "ms-vscode.cpptools",
