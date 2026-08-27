@@ -64,3 +64,11 @@ const getNth = (n, seq) => (n === 0 ? value(seq) : getNth(n - 1, next(seq)));
 // n tells us how many steps down to take. So we decrement on each recursive
 // call and we also pass in the next lazyNats function. When n reaches 0 we know
 // we complete, returning the value.
+
+//
+// Q20)
+// Write map(f, seq) for that sequence type. Why must the recursive call sit
+// inside the returned function rather than outside it?
+const seqMap = (f, seq) => sel => sel(f(value(seq)), seqMap(f, next(seq)))
+// same reason as Q18, evaluation stops at a lambda. So the recursive call only
+// runs when the sequence is applied.
