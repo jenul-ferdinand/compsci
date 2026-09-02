@@ -44,3 +44,6 @@ fit2102/**/tute*.zip
 fit2109/wk03/workshop03/data/audit.log
 # generated at runtime by course-api
 fit3184/wk05/course-api/counter.txt
+
+# group presentation deck, lives in the group repo
+fit3143/wk06/pres.pptx
